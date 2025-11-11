@@ -153,6 +153,19 @@ php artisan serve
 
 </div>
 
+---
+
+### 🔒 Security Note
+
+> **⚠️ IMPORTANT:** Never commit your `.env` file or expose your `APP_KEY` publicly!
+> 
+> - The `.env.example` file contains **placeholder values only**
+> - Always run `php artisan key:generate` after copying `.env.example` to `.env`
+> - Keep your `APP_KEY` secret and never share it in public repositories
+> - For production, use strong, unique keys and enable proper security measures
+
+---
+
 ## 💻 Usage
 
 ### Default Access

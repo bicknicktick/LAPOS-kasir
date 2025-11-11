@@ -43,10 +43,12 @@ class TransactionsExport implements FromCollection, WithHeadings, WithMapping, W
             'Date',
             'Time',
             'Payment Method',
+            'Currency Mode',
             'Items',
             'Subtotal',
             'Tax (10%)',
             'Total',
+            'Display Total',
             'Paid Amount',
             'Change',
         ];
@@ -57,15 +59,22 @@ class TransactionsExport implements FromCollection, WithHeadings, WithMapping, W
         $subtotal = $transaction->total / 1.1;
         $tax = $transaction->total - $subtotal;
         
+        // Display total based on currency mode
+        $displayTotal = $transaction->currency_mode == 'redenominated' 
+            ? number_format($transaction->total / 1000, 2, ',', '.') 
+            : number_format($transaction->total, 0, ',', '.');
+        
         return [
             $transaction->transaction_code,
             $transaction->created_at->format('Y-m-d'),
             $transaction->created_at->format('H:i:s'),
             ucfirst($transaction->payment_method),
+            $transaction->currency_mode == 'redenominated' ? 'Redenominated' : 'Standard',
             $transaction->details->count() . ' items',
             number_format($subtotal, 0, ',', '.'),
             number_format($tax, 0, ',', '.'),
             number_format($transaction->total, 0, ',', '.'),
+            $displayTotal,
             number_format($transaction->paid_amount, 0, ',', '.'),
             number_format($transaction->change, 0, ',', '.'),
         ];

@@ -226,6 +226,10 @@ function updateHiddenInputs() {
             <input type="hidden" name="items[${id}][price]" value="${cart[id].price}">
         `;
     }
+    
+    // Add currency mode
+    html += `<input type="hidden" name="currency_mode" value="${isRedenominated ? 'redenominated' : 'standard'}">`;
+    
     document.getElementById('cartItemsInput').innerHTML = html;
 }
 

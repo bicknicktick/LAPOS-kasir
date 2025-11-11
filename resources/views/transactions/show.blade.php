@@ -24,8 +24,14 @@
                 <p>{{ ucfirst($transaction->payment_method) }}</p>
             </div>
             <div>
-                <p><strong>Status:</strong></p>
-                <p style="color: #27ae60;">✓ Selesai</p>
+                <p><strong>Mode Mata Uang:</strong></p>
+                <p>
+                    @if($transaction->currency_mode == 'redenominated')
+                        <span style="color: #f39c12;">🔄 Redenominasi</span>
+                    @else
+                        <span style="color: #3498db;">💵 Standard</span>
+                    @endif
+                </p>
             </div>
         </div>
     </div>
@@ -52,17 +58,37 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" class="text-right"><strong>TOTAL:</strong></td>
-                <td><strong>Rp {{ number_format($transaction->total, 0, ',', '.') }}</strong></td>
+                <td colspan="3" class="text-right"><strong>TOTAL ({{ $transaction->currency_mode == 'redenominated' ? 'Redenominasi' : 'Standard' }}):</strong></td>
+                <td>
+                    <strong>
+                        @if($transaction->currency_mode == 'redenominated')
+                            Rp {{ number_format($transaction->total / 1000, 2, ',', '.') }}
+                        @else
+                            Rp {{ number_format($transaction->total, 0, ',', '.') }}
+                        @endif
+                    </strong>
+                </td>
             </tr>
             <tr>
                 <td colspan="3" class="text-right">Dibayar:</td>
-                <td>Rp {{ number_format($transaction->paid_amount, 0, ',', '.') }}</td>
+                <td>
+                    @if($transaction->currency_mode == 'redenominated')
+                        Rp {{ number_format($transaction->paid_amount / 1000, 2, ',', '.') }}
+                    @else
+                        Rp {{ number_format($transaction->paid_amount, 0, ',', '.') }}
+                    @endif
+                </td>
             </tr>
             @if($transaction->payment_method === 'tunai')
             <tr>
                 <td colspan="3" class="text-right">Kembalian:</td>
-                <td>Rp {{ number_format($transaction->change, 0, ',', '.') }}</td>
+                <td>
+                    @if($transaction->currency_mode == 'redenominated')
+                        Rp {{ number_format($transaction->change / 1000, 2, ',', '.') }}
+                    @else
+                        Rp {{ number_format($transaction->change, 0, ',', '.') }}
+                    @endif
+                </td>
             </tr>
             @endif
         </tfoot>

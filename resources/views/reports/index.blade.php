@@ -91,6 +91,7 @@
                     <th>Date & Time</th>
                     <th>Items</th>
                     <th>Payment</th>
+                    <th>Currency</th>
                     <th>Total</th>
                     <th>Actions</th>
                 </tr>
@@ -107,7 +108,21 @@
                             {{ ucfirst($transaction->payment_method) }}
                         </span>
                     </td>
-                    <td><strong>Rp {{ number_format($transaction->total, 0, ',', '.') }}</strong></td>
+                    <td>
+                        <span style="padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; 
+                            {{ $transaction->currency_mode == 'redenominated' ? 'background: #fff3cd; color: #856404;' : 'background: #e7f3ff; color: #004085;' }}">
+                            {{ $transaction->currency_mode == 'redenominated' ? '🔄 Redom' : '💵 Standard' }}
+                        </span>
+                    </td>
+                    <td>
+                        <strong>
+                            @if($transaction->currency_mode == 'redenominated')
+                                Rp {{ number_format($transaction->total / 1000, 2, ',', '.') }}
+                            @else
+                                Rp {{ number_format($transaction->total, 0, ',', '.') }}
+                            @endif
+                        </strong>
+                    </td>
                     <td>
                         <a href="{{ route('transactions.show', $transaction->id) }}" class="btn" style="padding: 6px 12px; font-size: 13px;">
                             View Details

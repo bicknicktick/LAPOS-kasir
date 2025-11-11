@@ -201,6 +201,7 @@
                 <th>Time</th>
                 <th>Items</th>
                 <th>Payment</th>
+                <th>Mode</th>
                 <th style="text-align: right;">Total</th>
             </tr>
         </thead>
@@ -216,7 +217,20 @@
                         {{ ucfirst($transaction->payment_method) }}
                     </span>
                 </td>
-                <td style="text-align: right;"><strong>Rp {{ number_format($transaction->total, 0, ',', '.') }}</strong></td>
+                <td>
+                    <span style="font-size: 9px; padding: 2px 6px; background: {{ $transaction->currency_mode == 'redenominated' ? '#fff3cd' : '#e7f3ff' }}; border-radius: 3px;">
+                        {{ $transaction->currency_mode == 'redenominated' ? 'Redom' : 'Std' }}
+                    </span>
+                </td>
+                <td style="text-align: right;">
+                    <strong>
+                        @if($transaction->currency_mode == 'redenominated')
+                            Rp {{ number_format($transaction->total / 1000, 2, ',', '.') }}
+                        @else
+                            Rp {{ number_format($transaction->total, 0, ',', '.') }}
+                        @endif
+                    </strong>
+                </td>
             </tr>
             @endforeach
         </tbody>

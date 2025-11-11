@@ -44,7 +44,8 @@ class TransactionController extends Controller
             'items.*.product_id' => 'required|exists:products,id',
             'items.*.quantity' => 'required|integer|min:1',
             'payment_method' => 'required|in:tunai,transfer',
-            'paid_amount' => 'required|numeric|min:0'
+            'paid_amount' => 'required|numeric|min:0',
+            'currency_mode' => 'nullable|in:standard,redenominated'
         ]);
 
         DB::beginTransaction();
@@ -93,7 +94,8 @@ class TransactionController extends Controller
                 'total' => $total,
                 'payment_method' => $request->payment_method,
                 'paid_amount' => $request->paid_amount,
-                'change' => $change
+                'change' => $change,
+                'currency_mode' => $request->currency_mode ?? 'standard'
             ]);
             
             // Simpan detail dan kurangi stok

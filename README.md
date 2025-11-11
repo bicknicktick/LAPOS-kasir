@@ -36,7 +36,11 @@
 ### 💼 Business Features
 - 📦 **Product Management** - Add, edit, delete products with stock tracking
 - 💰 **POS System** - Fast and intuitive checkout interface
-- 📊 **Reports** - Comprehensive sales reporting
+- 📊 **Reports** - Comprehensive sales reporting with export
+- **Export to PDF** - Elegant minimalist report design
+- **Export to Excel** - Detailed transaction data
+- **Date Filtering** - Custom date range reports
+- **Summary Dashboard** - Total revenue, cash, card payments
 - 💳 **Multiple Payment Methods** - Cash and card support
 - 🔄 **Currency Redenomination** - Ready for Indonesian Rupiah redenomination
 
@@ -122,26 +126,29 @@ Open your browser and navigate to the homepage. Click "Enter Application" to acc
 <div align="center">
 <table>
 <tr>
-<td align="center">
-<strong>Homepage</strong><br>
-<img src="https://via.placeholder.com/300x200?text=Homepage" alt="Homepage" width="300"/>
-</td>
-<td align="center">
-<strong>POS Interface</strong><br>
-<img src="https://via.placeholder.com/300x200?text=POS+Interface" alt="POS Interface" width="300"/>
+<td align="center" colspan="2">
+<strong>Homepage - Clean & Minimalist</strong><br>
+<img src="ui/homepage.png" alt="Homepage" width="600"/>
 </td>
 </tr>
 <tr>
 <td align="center">
-<strong>Product Management</strong><br>
-<img src="https://via.placeholder.com/300x200?text=Products" alt="Products" width="300"/>
+<strong>POS - Normal Rupiah Format</strong><br>
+<img src="ui/transaksi-rupiah-normal.png" alt="Normal Rupiah" width="400"/>
 </td>
 <td align="center">
-<strong>Reports</strong><br>
-<img src="https://via.placeholder.com/300x200?text=Reports" alt="Reports" width="300"/>
+<strong>POS - Redenominated Currency</strong><br>
+<img src="ui/transaksi-redom.png" alt="Redenominated" width="400"/>
 </td>
 </tr>
 </table>
+
+### Key Features Shown:
+- ✅ **Clean Homepage** - Minimalist design without flashy colors
+- ✅ **Currency Toggle** - Switch between normal (Rp 1.000) and redenominated (Rp 1.00)
+- ✅ **Real-time Search** - Fast product search with stock indicators
+- ✅ **Professional Interface** - Clean, functional design like US supermarkets
+
 </div>
 
 ## 🔧 Configuration

@@ -12,18 +12,29 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::with('details.product')
-            ->orderBy('created_at', 'desc')
-            ->get();
-        
-        return view('transactions.index', compact('transactions'));
+        try {
+            $transactions = Transaction::with('details.product')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            
+            return view('transactions.index', compact('transactions'));
+        } catch (\Exception $e) {
+            return back()->withErrors([
+                'error' => 'Unable to load transaction history. Please contact support if this persists.'
+            ]);
+        }
     }
 
     public function create()
     {
-        $products = Product::where('stock', '>', 0)->get();
-        // Use modern POS interface
-        return view('transactions.create_modern', compact('products'));
+        try {
+            $products = Product::where('stock', '>', 0)->get();
+            return view('transactions.create_modern', compact('products'));
+        } catch (\Exception $e) {
+            return back()->withErrors([
+                'error' => 'Unable to load products. Please ensure the database is properly configured.'
+            ]);
+        }
     }
 
     public function store(Request $request)
@@ -101,12 +112,16 @@ class TransactionController extends Controller
             DB::commit();
             
             return redirect()->route('transactions.show', $transaction->id)
-                ->with('success', 'Transaksi berhasil');
+                ->with('success', 'Transaction completed successfully');
                 
         } catch (\Exception $e) {
             DB::rollback();
+            
+            // Log error for debugging
+            \Log::error('Transaction failed: ' . $e->getMessage());
+            
             return back()->withErrors([
-                'error' => 'Terjadi kesalahan: ' . $e->getMessage()
+                'error' => 'Transaction failed. Please try again or contact support if the issue persists.'
             ])->withInput();
         }
     }

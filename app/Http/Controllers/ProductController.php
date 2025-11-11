@@ -9,8 +9,14 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::orderBy('name')->get();
-        return view('products.index', compact('products'));
+        try {
+            $products = Product::orderBy('name')->get();
+            return view('products.index', compact('products'));
+        } catch (\Exception $e) {
+            return back()->withErrors([
+                'error' => 'Unable to load products. Please ensure the database is properly configured.'
+            ]);
+        }
     }
 
     public function create()
@@ -28,10 +34,16 @@ class ProductController extends Controller
             'category' => 'nullable|string'
         ]);
 
-        Product::create($request->all());
+        try {
+            Product::create($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Produk berhasil ditambahkan');
+            return redirect()->route('products.index')
+                ->with('success', 'Product added successfully');
+        } catch (\Exception $e) {
+            return back()->withErrors([
+                'error' => 'Failed to add product. Please try again.'
+            ])->withInput();
+        }
     }
 
     public function edit(Product $product)
@@ -49,28 +61,46 @@ class ProductController extends Controller
             'category' => 'nullable|string'
         ]);
 
-        $product->update($request->all());
+        try {
+            $product->update($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Produk berhasil diupdate');
+            return redirect()->route('products.index')
+                ->with('success', 'Product updated successfully');
+        } catch (\Exception $e) {
+            return back()->withErrors([
+                'error' => 'Failed to update product. Please try again.'
+            ])->withInput();
+        }
     }
 
     public function destroy(Product $product)
     {
-        $product->delete();
+        try {
+            $product->delete();
 
-        return redirect()->route('products.index')
-            ->with('success', 'Produk berhasil dihapus');
+            return redirect()->route('products.index')
+                ->with('success', 'Product deleted successfully');
+        } catch (\Exception $e) {
+            return back()->withErrors([
+                'error' => 'Failed to delete product. This product may be used in transactions.'
+            ]);
+        }
     }
 
     public function search(Request $request)
     {
-        $query = $request->input('q');
-        
-        $products = Product::where('name', 'like', "%{$query}%")
-            ->orWhere('code', 'like', "%{$query}%")
-            ->get();
+        try {
+            $query = $request->input('q');
+            
+            $products = Product::where('name', 'like', "%{$query}%")
+                ->orWhere('code', 'like', "%{$query}%")
+                ->get();
 
-        return response()->json($products);
+            return response()->json($products);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Search failed. Please try again.'
+            ], 500);
+        }
     }
 }

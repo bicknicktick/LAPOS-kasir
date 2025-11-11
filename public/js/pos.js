@@ -229,6 +229,10 @@ function updateHiddenInputs() {
     // Add currency mode
     html += `<input type="hidden" name="currency_mode" value="${isRedenominated ? 'redenominated' : 'standard'}">`;
     
+    // Add cashier name from session
+    const cashierName = sessionStorage.getItem('cashier_name') || '';
+    html += `<input type="hidden" name="cashier_name" value="${cashierName}">`;
+    
     document.getElementById('cartItemsInput').innerHTML = html;
 }
 

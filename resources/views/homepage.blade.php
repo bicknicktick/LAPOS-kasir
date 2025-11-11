@@ -279,11 +279,22 @@
             <p class="subtitle">Modern Point of Sale System</p>
             <span class="version">v1.0.0</span>
             
-            <div style="margin-top: 40px;">
-                <button class="enter-btn" onclick="enterApp()">
+            <form id="loginForm" style="margin-top: 40px; width: 100%;">
+                <div style="margin-bottom: 15px;">
+                    <input type="text" id="cashierName" placeholder="Cashier Name" 
+                        style="width: 100%; padding: 12px; border: 2px solid #ecf0f1; border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif;"
+                        required autocomplete="off">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="password" id="cashierPin" placeholder="PIN (6 digits)" 
+                        style="width: 100%; padding: 12px; border: 2px solid #ecf0f1; border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif;"
+                        required maxlength="6" pattern="[0-9]{6}">
+                </div>
+                <button type="submit" class="enter-btn" style="width: 100%;">
                     Enter Application
                 </button>
-            </div>
+                <div id="loginError" style="color: #e74c3c; font-size: 13px; margin-top: 10px; display: none;"></div>
+            </form>
             
             <div class="footer-links">
                 <a href="#" onclick="openModal('about'); return false;">About</a>
@@ -374,15 +385,47 @@
     </div>
     
     <script>
-        // Enter application with slide animation
-        function enterApp() {
-            const homepage = document.getElementById('homepage');
-            homepage.classList.add('slide-out');
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            setTimeout(() => {
-                window.location.href = '{{ route("transactions.create") }}';
-            }, 800);
-        }
+            const name = document.getElementById('cashierName').value;
+            const pin = document.getElementById('cashierPin').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            try {
+                const response = await fetch('/api/cashier/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ name, pin })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Store cashier info in session storage
+                    sessionStorage.setItem('cashier_name', data.cashier.name);
+                    sessionStorage.setItem('cashier_id', data.cashier.id);
+                    
+                    // Slide out animation
+                    const homepage = document.getElementById('homepage');
+                    homepage.classList.add('slide-out');
+                    
+                    setTimeout(() => {
+                        window.location.href = '{{ route("transactions.create") }}';
+                    }, 800);
+                } else {
+                    errorDiv.textContent = data.message || 'Invalid credentials';
+                    errorDiv.style.display = 'block';
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Login failed. Please try again.';
+                errorDiv.style.display = 'block';
+            }
+        });
         
         // Modal functions
         function openModal(type) {

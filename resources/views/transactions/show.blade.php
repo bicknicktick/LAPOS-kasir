@@ -33,6 +33,10 @@
                     @endif
                 </p>
             </div>
+            <div>
+                <p><strong>Kasir:</strong></p>
+                <p style="font-weight: 600; color: #16a085;">{{ $transaction->cashier_name ?? '-' }}</p>
+            </div>
         </div>
     </div>
     

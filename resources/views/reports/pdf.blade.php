@@ -199,6 +199,7 @@
                 <th>Code</th>
                 <th>Date</th>
                 <th>Time</th>
+                <th>Cashier</th>
                 <th>Items</th>
                 <th>Payment</th>
                 <th>Mode</th>
@@ -211,6 +212,7 @@
                 <td><strong>{{ $transaction->transaction_code }}</strong></td>
                 <td>{{ $transaction->created_at->format('d M Y') }}</td>
                 <td>{{ $transaction->created_at->format('H:i') }}</td>
+                <td><strong>{{ $transaction->cashier_name ?? '-' }}</strong></td>
                 <td>{{ $transaction->details->count() }} items</td>
                 <td>
                     <span class="badge {{ $transaction->payment_method == 'tunai' ? 'badge-cash' : 'badge-card' }}">

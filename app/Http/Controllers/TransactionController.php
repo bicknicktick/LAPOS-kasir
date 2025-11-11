@@ -45,7 +45,8 @@ class TransactionController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
             'payment_method' => 'required|in:tunai,transfer',
             'paid_amount' => 'required|numeric|min:0',
-            'currency_mode' => 'nullable|in:standard,redenominated'
+            'currency_mode' => 'nullable|in:standard,redenominated',
+            'cashier_name' => 'nullable|string|max:100'
         ]);
 
         DB::beginTransaction();
@@ -95,7 +96,8 @@ class TransactionController extends Controller
                 'payment_method' => $request->payment_method,
                 'paid_amount' => $request->paid_amount,
                 'change' => $change,
-                'currency_mode' => $request->currency_mode ?? 'standard'
+                'currency_mode' => $request->currency_mode ?? 'standard',
+                'cashier_name' => $request->cashier_name
             ]);
             
             // Simpan detail dan kurangi stok

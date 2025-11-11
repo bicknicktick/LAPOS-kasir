@@ -89,6 +89,7 @@
                 <tr>
                     <th>Code</th>
                     <th>Date & Time</th>
+                    <th>Cashier</th>
                     <th>Items</th>
                     <th>Payment</th>
                     <th>Currency</th>
@@ -101,6 +102,11 @@
                 <tr>
                     <td><strong>{{ $transaction->transaction_code }}</strong></td>
                     <td>{{ $transaction->created_at->format('d M Y, H:i') }}</td>
+                    <td>
+                        <span style="font-weight: 600; color: #2c3e50;">
+                            {{ $transaction->cashier_name ?? '-' }}
+                        </span>
+                    </td>
                     <td>{{ $transaction->details->count() }} items</td>
                     <td>
                         <span style="padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; 

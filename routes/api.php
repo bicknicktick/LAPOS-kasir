@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Cashier login
+Route::post('/cashier/login', [App\Http\Controllers\Api\CashierController::class, 'login']);

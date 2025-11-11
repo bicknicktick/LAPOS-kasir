@@ -15,7 +15,8 @@ class Transaction extends Model
         'payment_method',
         'paid_amount',
         'change',
-        'currency_mode'
+        'currency_mode',
+        'cashier_name'
     ];
 
     public function details()

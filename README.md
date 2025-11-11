@@ -1,29 +1,65 @@
 <div align="center">
 
-# 🛒 LAPOS - Modern Point of Sale System
+<img src="public/favicon.svg" alt="LAPOS Logo" width="140" height="140" />
 
-<img src="public/favicon.svg" alt="LAPOS Logo" width="120" height="120" />
-
-[![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
-[![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
-[![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+# LAPOS
+### 🏪 Modern Point of Sale System
 
 <p align="center">
-  <strong>A modern, elegant, and efficient Point of Sale system built with Laravel</strong>
+  <strong>Professional, Clean, and Efficient POS System for Retail Businesses</strong>
 </p>
 
 <p align="center">
-  <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#screenshots">Screenshots</a> •
-  <a href="#support">Support</a>
+  <a href="https://laravel.com">
+    <img src="https://img.shields.io/badge/Laravel-10.x-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel">
+  </a>
+  <a href="https://php.net">
+    <img src="https://img.shields.io/badge/PHP-8.3-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP">
+  </a>
+  <a href="https://sqlite.org">
+    <img src="https://img.shields.io/badge/SQLite-3-003B57?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-16a085?style=flat-square" alt="License">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/bicknicktick/LAPOS-kasir/stargazers">
+    <img src="https://img.shields.io/github/stars/bicknicktick/LAPOS-kasir?style=social" alt="Stars">
+  </a>
+  <a href="https://github.com/bicknicktick/LAPOS-kasir/network/members">
+    <img src="https://img.shields.io/github/forks/bicknicktick/LAPOS-kasir?style=social" alt="Forks">
+  </a>
+  <a href="https://github.com/bicknicktick/LAPOS-kasir/issues">
+    <img src="https://img.shields.io/github/issues/bicknicktick/LAPOS-kasir?style=flat-square" alt="Issues">
+  </a>
+</p>
+
+<p align="center">
+  <a href="#-features">Features</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-usage">Usage</a> •
+  <a href="#-screenshots">Screenshots</a> •
+  <a href="#-contributing">Contributing</a> •
+  <a href="#-support">Support</a>
+</p>
+
+<br>
+
+<p align="center">
+  <a href="https://e.bitzy.id">
+    <img src="https://img.shields.io/badge/🚀_Powered_by-e.bitzy.id-16a085?style=for-the-badge" alt="Powered by e.bitzy.id">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://paypal.me/bitzyid">
+    <img src="https://img.shields.io/badge/💖_Support_Development-Donate_via_PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="Donate">
+  </a>
 </p>
 
 ---
-
-### 🌟 Powered by [e.bitzy.id](https://e.bitzy.id)
 
 </div>
 
@@ -60,40 +96,62 @@
 
 ## 🚀 Installation
 
-### Prerequisites
+<div align="center">
 
-- PHP >= 8.1
-- Composer
-- SQLite3
-- Node.js & NPM (optional for assets)
+### 📋 Prerequisites
 
-### Quick Start
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://img.shields.io/badge/PHP-8.3+-777BB4?style=flat-square&logo=php" alt="PHP"><br>
+      <sub>PHP 8.1 or higher</sub>
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Composer-Latest-885630?style=flat-square&logo=composer" alt="Composer"><br>
+      <sub>Dependency Manager</sub>
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/SQLite-3-003B57?style=flat-square&logo=sqlite" alt="SQLite"><br>
+      <sub>Database</sub>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+### ⚡ Quick Start
 
 ```bash
-# Clone the repository
+# 1️⃣ Clone the repository
 git clone https://github.com/bicknicktick/LAPOS-kasir.git
 cd LAPOS-kasir
 
-# Install dependencies
+# 2️⃣ Install dependencies
 composer install
 
-# Copy environment file
+# 3️⃣ Setup environment
 cp .env.example .env
-
-# Generate application key
 php artisan key:generate
 
-# Create SQLite database
+# 4️⃣ Create database
 touch database/database.sqlite
 
-# Run migrations and seeders
+# 5️⃣ Run migrations & seed data
 php artisan migrate --seed
 
-# Start the development server
+# 6️⃣ Start the server
 php artisan serve
 ```
 
-Visit `http://localhost:8000` in your browser.
+<div align="center">
+
+🎉 **Done!** Visit `http://localhost:8000` in your browser
+
+<br>
+
+<img src="https://img.shields.io/badge/⏱️_Setup_Time-5_Minutes-16a085?style=for-the-badge" alt="Setup Time">
+
+</div>
 
 ## 💻 Usage
 
@@ -193,15 +251,47 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-If you find LAPOS useful, please consider supporting the development:
+<h3>Love LAPOS? Support the Project!</h3>
+
+<p>Your support helps us maintain and improve LAPOS with new features and updates.</p>
+
+<br>
 
 <a href="https://paypal.me/bitzyid" target="_blank">
-  <img src="https://img.shields.io/badge/Donate-PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="Donate with PayPal" />
+  <img src="https://img.shields.io/badge/💳_Donate-PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="Donate with PayPal" />
 </a>
 
-Every contribution helps maintain and improve LAPOS! 
+<br><br>
 
-⭐ Don't forget to star this repository if you find it helpful!
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/⭐-Star_on_GitHub-yellow?style=flat-square" alt="Star"><br>
+      <sub>Give us a star</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/🍴-Fork_Project-blue?style=flat-square" alt="Fork"><br>
+      <sub>Fork and contribute</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/💬-Share_Feedback-green?style=flat-square" alt="Feedback"><br>
+      <sub>Report issues</sub>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+### 🎁 Why Donate?
+
+- ☕ **Buy me a coffee** - Keep the developer caffeinated
+- 🚀 **Faster updates** - More time for development
+- 🐛 **Bug fixes** - Priority support for donors
+- ✨ **New features** - Your suggestions come first
+
+<br>
+
+<p><em>Every contribution, no matter how small, makes a difference!</em></p>
 
 </div>
 
@@ -211,20 +301,73 @@ Every contribution helps maintain and improve LAPOS!
 - Icons from [Heroicons](https://heroicons.com)
 - Font: [Inter](https://fonts.google.com/specimen/Inter)
 
-## 📞 Contact
+## 📞 Contact & Links
 
 <div align="center">
 
-### Developed with ❤️ by [e.bitzy.id](https://e.bitzy.id)
+<br>
 
-For support, feature requests, or business inquiries:
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://e.bitzy.id">
+        <img src="https://img.shields.io/badge/🌐_Website-e.bitzy.id-16a085?style=for-the-badge" alt="Website">
+      </a>
+    </td>
+    <td align="center">
+      <a href="mailto:support@e.bitzy.id">
+        <img src="https://img.shields.io/badge/📧_Email-support@e.bitzy.id-2c3e50?style=for-the-badge" alt="Email">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/bicknicktick/LAPOS-kasir">
+        <img src="https://img.shields.io/badge/💻_GitHub-LAPOS--kasir-181717?style=for-the-badge&logo=github" alt="GitHub">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://paypal.me/bitzyid">
+        <img src="https://img.shields.io/badge/💰_Donate-PayPal-00457C?style=for-the-badge&logo=paypal" alt="PayPal">
+      </a>
+    </td>
+  </tr>
+</table>
 
-📧 Email: support@e.bitzy.id  
-🌐 Website: [https://e.bitzy.id](https://e.bitzy.id)  
-💰 Donate: [PayPal.me/bitzyid](https://paypal.me/bitzyid)
+<br>
+
+### 💼 Need Custom Development?
+
+<p>We offer custom POS solutions tailored to your business needs.</p>
+
+<a href="mailto:support@e.bitzy.id?subject=Custom%20POS%20Development">
+  <img src="https://img.shields.io/badge/📩_Contact_Us-For_Custom_Solutions-16a085?style=for-the-badge" alt="Contact">
+</a>
+
+<br><br>
 
 ---
 
+<br>
+
+<p>
+  <strong>Developed with ❤️ by <a href="https://e.bitzy.id">e.bitzy.id</a></strong>
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/Made_with-Laravel-FF2D20?style=flat-square&logo=laravel" alt="Laravel">
+  <img src="https://img.shields.io/badge/Made_with-PHP-777BB4?style=flat-square&logo=php" alt="PHP">
+  <img src="https://img.shields.io/badge/Made_with-Love-e74c3c?style=flat-square&logo=heart" alt="Love">
+</p>
+
+<br>
+
 <sub>© 2024 LAPOS - Powered by e.bitzy.id. All rights reserved.</sub>
+
+<br><br>
+
+<a href="#lapos">
+  <img src="https://img.shields.io/badge/⬆️_Back_to_Top-16a085?style=flat-square" alt="Back to Top">
+</a>
 
 </div>

@@ -10,12 +10,12 @@ class CashierController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'pin' => 'required|string|size:6'
-        ]);
-        
         try {
+            $request->validate([
+                'name' => 'required|string',
+                'pin' => 'required|string|size:6'
+            ]);
+            
             $cashier = Cashier::where('name', $request->name)
                 ->where('pin', $request->pin)
                 ->where('is_active', true)
@@ -23,19 +23,30 @@ class CashierController extends Controller
             
             if (!$cashier) {
                 return response()->json([
+                    'success' => false,
                     'message' => 'Invalid name or PIN'
                 ], 401);
             }
             
             return response()->json([
+                'success' => true,
                 'message' => 'Login successful',
                 'cashier' => [
                     'id' => $cashier->id,
                     'name' => $cashier->name
                 ]
-            ]);
-        } catch (\Exception $e) {
+            ], 200);
+            
+        } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            \Log::error('Cashier login error: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
                 'message' => 'Login failed. Please try again.'
             ], 500);
         }

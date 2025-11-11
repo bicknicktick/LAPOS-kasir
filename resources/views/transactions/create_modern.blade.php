@@ -81,7 +81,12 @@
                 </div>
             </div>
             
-            <input type="number" class="payment-input" id="paymentAmount" placeholder="Amount paid...">
+            <div style="position: relative;">
+                <input type="number" class="payment-input" id="paymentAmount" placeholder="Enter amount (e.g., 100 for Rp 100.000)">
+                <div style="font-size: 11px; color: #7f8c8d; margin-top: 6px; padding: 0 4px;">
+                    💡 <strong>Input format:</strong> Enter <strong>100</strong> for Rp 100.000 | <strong>50</strong> for Rp 50.000
+                </div>
+            </div>
             
             <div class="total-row" style="margin-bottom: 12px;">
                 <span class="total-label">Change</span>

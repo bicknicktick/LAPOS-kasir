@@ -14,17 +14,15 @@ function formatCurrency(amount) {
     }
 }
 
-// Parse currency input
+// Parse currency input - ALWAYS in redenominated format (user inputs 100 for Rp 100.000)
 function parseCurrency(value) {
     if (typeof value === 'string') {
         value = value.replace(/[^\d.,]/g, '').replace(/\./g, '').replace(',', '.');
     }
     value = parseFloat(value) || 0;
     
-    if (isRedenominated) {
-        return value * 1000;
-    }
-    return value;
+    // ALWAYS multiply by 1000 because input is always in redenominated format
+    return value * 1000;
 }
 
 // Search products
@@ -179,7 +177,8 @@ document.querySelectorAll('.payment-method').forEach(method => {
         
         if (paymentMethod === 'transfer') {
             const total = calculateTotal();
-            document.getElementById('paymentAmount').value = isRedenominated ? total / 1000 : total;
+            // Input always in redenominated format (divided by 1000)
+            document.getElementById('paymentAmount').value = total / 1000;
             calculateChange();
         }
     });

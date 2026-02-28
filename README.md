@@ -383,8 +383,8 @@ php artisan db:seed --class=CashierSeeder
 
 | Role | Username | PIN | Akses |
 |------|----------|-----|-------|
-| `admin` | Admin | 123456 | Seluruh modul operasional |
-| `cashier` | Kasir1 | 111111 | POS harian + proses shift |
+| `admin` | admin | 123456 | Seluruh modul operasional |
+| `cashier` |  |  | POS harian + proses shift |
 | `superadmin` | — | — | Seluruh modul + tenant scope |
 | `manager` | — | — | Operasional + pelaporan |
 
